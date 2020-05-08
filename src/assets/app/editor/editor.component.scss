@@ -1,0 +1,85 @@
+.top-nav {
+    height: 50px;
+    background: #d6d6d6;
+    border-bottom: 1px solid #afafaf;
+}
+.left-nav {
+    width: 300px;
+    background: #fbfbfb;
+    height: calc(100vh - 51px);
+    float: left;
+    position: relative;
+    border-right: 1px solid #dedede;
+}
+.deitor-wrap {
+    width: calc(100% - 301px);
+    float: left;
+    height: calc(100vh - 51px);
+    .deitor-content-main {
+        height: 100%;
+        overflow: auto;
+        .deitor-content-outer {
+            padding: 30px 40px;
+        }
+    }
+}
+.date-time {
+    height: 40px;
+    background: #dedede;
+}
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 10px;
+}
+.title-wrap {
+    margin-bottom: 15px;
+    .form-control {
+        height: 40px;
+    }
+}
+.info-wrap {
+    .form-control {
+        height: calc(100vh - 196px);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<div class="top-nav">
+    <button (click)="createNewSubmit()" *ngIf="createNewBtn">Create new</button>
+    <button (click)="saveNewNoteSubmit()" *ngIf="saveNewNoteBtn">save</button>
+    <button (click)="editOldNoteSubmit()" [disabled]="desableEditBtn" *ngIf="editOldNoteBtn">Edit</button>
+    <button (click)="saveOldEditNoteSubmit()" *ngIf="saveOldEditNoteBtn">Save Edit</button>
+    <button (click)="deleteNoteItem()" [disabled]="desableDeleteBtn" *ngIf="deleteNoteBtn">delete</button>
+</div>
+<div class="left-nav">
+    {{enterTitle}}
+    <!-- <div class="editMode">
+
+    </div> -->
+
+    <div class="showNoteList">
+        <ul>
+            <li *ngFor="let item of getLocalData let i = index">
+                <input type="radio" name="test" (change)="selectNoteItem(i, item)">
+                <div class="editMode"></div>
+                <div class="normalMode">{{item.enterTitle}}</div>
+                <div class="">{{item.enterInformation}}</div>
+            </li>
+        </ul>
+    </div>
+   
+</div>
+<div class="deitor-wrap">
+    <div class="deitor-content-main">
+        <div class="deitor-content-outer">
+        <!-- <div class="deitor-content-outer" [ngClass]="firstLoadingCheckValue ? 'example-class' : 'other-class'"> -->
+            <div class="date-time"></div>
+            <form #f="ngForm" (ngSubmit)="editorFormSubmit()">
+                <div class="create-new-note" *ngIf="createNewNote">
+                    <div class="title-wrap">
+                        <input name="enterTitle" [(ngModel)]="enterTitle" type="text" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="info-wrap">
+                        <textarea name="enterInformation" [(ngModel)]="enterInformation" class="form-control" placeholder="Enter information"></textarea>
+                    </div>
+                </div>
+                <div class="edit-note" *ngIf="editOldNote">
+                    <div class="title-wrap">
+                        <input name="enterTitle" [disabled]="desableField" [(ngModel)]="enterTitle" type="text" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="info-wrap">
+                        <textarea name="enterInformation" [disabled]="desableField" [(ngModel)]="enterInformation" class="form-control" placeholder="Enter information"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

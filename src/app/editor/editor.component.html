@@ -1,0 +1,55 @@
+<div class="top-nav">
+    <div class="btn-wrap">
+        <button class="btn" (click)="createNewSubmit()" *ngIf="createNewBtn">Create new</button>
+        <button class="btn" (click)="saveNewNoteSubmit()" *ngIf="saveNewNoteBtn">save</button>
+        <button class="btn" (click)="editOldNoteSubmit()" [disabled]="desableEditBtn" *ngIf="editOldNoteBtn">Edit</button>
+        <button class="btn" (click)="saveOldEditNoteSubmit()" *ngIf="saveOldEditNoteBtn">Save Edit</button>
+        <button class="btn" (click)="deleteNoteItem()" [disabled]="desableDeleteBtn" *ngIf="deleteNoteBtn">delete</button>
+    </div>
+    <div class="search-wrap">
+        <input type="text" [(ngModel)]="searchTerm" (input)="search()" class="form-control" placeholder="Search here">
+    </div>
+</div>
+<div class="left-nav">
+    <div class="showNoteList">
+        <ul>
+            <li *ngFor="let item of searchItem; let i = index">
+                <input id="{{i}}" class="input-hidden" type="radio" name="test" (change)="selectNoteItem(i, item)">
+                <label for="{{i}}">
+                    <h4>{{item.enterTitle}}</h4>
+                    <div class="bottom-data">
+                        <span class="time">{{item.dateTime}}</span>
+                        <span class="some-info">{{item.enterInformation}}</span>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </div> 
+</div>
+<div class="deitor-wrap">
+    <div class="deitor-content-main">
+        <div class="deitor-content-outer">
+            <div class="date-time">
+                {{currentDate}}
+            </div>
+            <form #f="ngForm" (ngSubmit)="editorFormSubmit()">
+                <div class="create-new-note" *ngIf="createNewNote">
+                    <div class="title-wrap">
+                        <input name="enterTitle" [(ngModel)]="enterTitle" type="text" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="info-wrap">
+                        <textarea name="enterInformation" [(ngModel)]="enterInformation" class="form-control" placeholder="Enter information"></textarea>
+                    </div>
+                </div>
+                <div class="edit-note" *ngIf="editOldNote">
+                    <div class="title-wrap">
+                        <input name="enterTitle" [disabled]="desableField" [(ngModel)]="enterTitle" (keyup)="sendTitle()" type="text" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="info-wrap">
+                        <textarea name="enterInformation" [disabled]="desableField" [(ngModel)]="enterInformation" (keyup)="sendTitle()" class="form-control" placeholder="Enter information"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
