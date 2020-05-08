@@ -1,10 +1,11 @@
 <div class="top-nav">
     <div class="btn-wrap">
-        <button class="btn" (click)="createNewSubmit()" *ngIf="createNewBtn">Create new</button>
-        <button class="btn" (click)="saveNewNoteSubmit()" *ngIf="saveNewNoteBtn">save</button>
+        <button class="btn" (click)="createNewSubmit()" [disabled]="desableCreateNewBtn" *ngIf="createNewBtn">Create new</button>
+        <button class="btn" (click)="saveNewNoteSubmit()" *ngIf="saveNewNoteBtn">Save</button>
+        <button class="btn" (click)="cancelNewNoteSubmit()" *ngIf="cancelNewNoteBtn">Cancel</button>
         <button class="btn" (click)="editOldNoteSubmit()" [disabled]="desableEditBtn" *ngIf="editOldNoteBtn">Edit</button>
         <button class="btn" (click)="saveOldEditNoteSubmit()" *ngIf="saveOldEditNoteBtn">Save Edit</button>
-        <button class="btn" (click)="deleteNoteItem()" [disabled]="desableDeleteBtn" *ngIf="deleteNoteBtn">delete</button>
+        <button class="btn" (click)="deleteNoteItem()" [disabled]="desableDeleteBtn" *ngIf="deleteNoteBtn">Delete</button>
     </div>
     <div class="search-wrap">
         <input type="text" [(ngModel)]="searchTerm" (input)="search()" class="form-control" placeholder="Search here">

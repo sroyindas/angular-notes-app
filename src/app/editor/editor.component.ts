@@ -12,11 +12,13 @@ export class EditorComponent implements OnInit {
   public editOldNoteBtn = false;
   public saveOldEditNoteBtn = false;
   public deleteNoteBtn = false;
+  public cancelNewNoteBtn = false;
   public createNewNote = true;
   public editOldNote = false;
   public desableField = true;
   public desableEditBtn = true;
   public desableDeleteBtn = true;
+  public desableCreateNewBtn = false;
   public editMode = false;
   public normalMode = true;
   public enterTitle = '';
@@ -59,8 +61,24 @@ export class EditorComponent implements OnInit {
     this.editOldNote = false;
     this.desableField = false;
     this.createNewNote = true;
+    this.editOldNoteBtn = false;
+    this.deleteNoteBtn = false;
+    this.cancelNewNoteBtn = true;
     this.enterTitle = '';
     this.enterInformation = '';
+  }
+
+  cancelNewNoteSubmit() {
+    this.createNewBtn = true;
+    this.editOldNoteBtn = true;
+    this.deleteNoteBtn = true;
+    this.editOldNote = true;
+    this.desableField = true;
+    this.cancelNewNoteBtn = false;
+    this.saveNewNoteBtn = false;
+    this.saveOldEditNoteBtn = false;
+    this.createNewNote = false;
+    
   }
 
   public saveNewNoteSubmit() {
@@ -68,11 +86,16 @@ export class EditorComponent implements OnInit {
       alert('Please fillup the note!');
       return;
     }
-    this.saveNewNoteBtn = false;
-    this.createNewBtn = true;
-    this.createNewNote = false;
     this.editOldNote = true;
     this.desableField = true;
+    this.createNewBtn = true;
+    this.editOldNoteBtn = true;
+    this.desableEditBtn = true;
+    this.deleteNoteBtn = true;
+    this.desableDeleteBtn = true;
+    this.saveNewNoteBtn = false;
+    this.createNewNote = false;
+    this.cancelNewNoteBtn = false;
     const seteditoe = localStorage.getItem('setEditorValue')
     this.getLocalData.push({
       enterTitle: this.enterTitle,
@@ -118,6 +141,7 @@ export class EditorComponent implements OnInit {
     this.saveOldEditNoteBtn = true;
     this.editOldNote = true;
     this.desableField = false;
+    this.desableCreateNewBtn = true;
     this.normalMode = false;
     this.editMode = true;
   }
@@ -131,7 +155,13 @@ export class EditorComponent implements OnInit {
     this.saveOldEditNoteBtn = false;
     this.editOldNote = true;
     this.desableField = true; 
+    this.desableCreateNewBtn = false;
     const seteditoe = localStorage.getItem('setEditorValue')
+    // this.getLocalData.splice(this.selectID, 1, {
+    //   enterTitle: this.enterTitle,
+    //   enterInformation: this.enterInformation,
+    //   dateTime: this.currentDate,
+    // });
     const newseteditoe = JSON.parse(seteditoe);
     newseteditoe.splice(this.selectID, 1, {
       enterTitle: this.enterTitle,
